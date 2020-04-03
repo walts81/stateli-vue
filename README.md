@@ -1,4 +1,4 @@
-# Stateli
+# Stateli Vue
 
 [![Build Status](https://travis-ci.com/walts81/stateli-vue.svg?branch=master)](https://travis-ci.com/walts81/stateli-vue)
 [![Coverage Status](https://coveralls.io/repos/github/walts81/stateli-vue/badge.svg)](https://coveralls.io/github/walts81/stateli-vue)
@@ -10,7 +10,7 @@ A [Vue][vue] plugin to enable [Stateli][stateli] to work with [Vue DevTools][vue
 Install stateli-vue with npm.
 
 ```sh
-$ npm install stateli --save
+$ npm install stateli stateli-vue --save
 ```
 
 ### Usage

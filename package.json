@@ -7,7 +7,7 @@
     "start": "npm run build && node dist/index.js",
     "build": "npm run clean:dist && tsc",
     "prepack": "npm run clean:tarball && npm run build",
-    "test": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "test": "tsc && tslint --project tsconfig.json && jest --verbose --coverage && cat ./coverage/lcov.info | coveralls",
     "watch:test": "jest --watch",
     "clean:dist": "node_modules/.bin/rimraf dist/",
     "clean:tarball": "node_modules/.bin/rimraf stateli*.tgz"
