@@ -1,12 +1,13 @@
 import Vue from 'vue';
+import initDevTools from './init-dev-tools';
 
 let _vue: any;
 
 function vuexInit(this: any) {
-  const $this: any = this;
-  const options = $this.$options;
+  const options = this.$options;
   if (options.store) {
     this.$store = typeof options.store === 'function' ? options.store() : options.store;
+    initDevTools(this, this.$store);
   } else if (options.parent && options.parent.$store) {
     this.$store = options.parent.$store;
   }

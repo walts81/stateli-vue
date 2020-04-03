@@ -17,9 +17,23 @@ $ npm install stateli --save
 
 ```javascript
 import Vue from 'vue';
+import { StateliStore } from 'stateli';
 import StateliVue from 'stateli-vue';
+import App from './App.vue'; // <-- your main app component
 
-Vue.use(StateliVue);
+Vue.use(StateliVuePlugin);
+
+const store = new StateliStore({
+  actions: [],
+  mutations: [],
+  getters: [],
+  state: {},
+});
+
+const vueInstance = new Vue({
+  store,
+  render: h => h(App),
+});
 ```
 
 ## License
