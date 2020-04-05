@@ -1,6 +1,6 @@
 {
   "name": "stateli-vue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vue plugin to enable Stateli to work with Vue dev tools",
   "main": "dist/index.js",
   "scripts": {
