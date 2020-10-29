@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "vue": "^2.0.0",
-    "stateli": "^1.0.4"
+    "stateli": "^1.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -42,7 +42,7 @@
     "coveralls": "^3.0.11",
     "jest": "^25.2.6",
     "rimraf": "^3.0.2",
-    "stateli": "^1.0.4",
+    "stateli": "^1.0.7",
     "ts-jest": "^25.3.0",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3",
