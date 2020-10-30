@@ -58,18 +58,10 @@ const initVm = (store: IStateliStore<any>) => {
   }
 };
 
-const forceUpdate = (vm: Vue) => {
-  vm.$forceUpdate();
-  for (const c of vm.$children) {
-    forceUpdate(c);
-  }
-};
-
-export default (vueInstance: Vue, store: IStateliStore<any>) => {
+export default (store: IStateliStore<any>) => {
   if (!devtoolHook) return;
 
   initVm(store);
-  store.subscribeToMutation(() => forceUpdate(vueInstance.$root));
 
   devtoolHook.emit('vuex:init', store);
 

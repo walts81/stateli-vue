@@ -4,6 +4,13 @@ import { IStateliStore } from 'stateli';
 
 let devtoolsInited = false;
 
+const forceUpdate = (vm: Vue) => {
+  vm.$forceUpdate();
+  for (const c of vm.$children) {
+    forceUpdate(c);
+  }
+};
+
 export default (vueInstance: Vue, store: IStateliStore<any>) => {
   if (devtoolsInited) {
     return;
@@ -12,6 +19,7 @@ export default (vueInstance: Vue, store: IStateliStore<any>) => {
   const $options: any = vueInstance.$options;
   const useDevTools = $options.devtools !== undefined ? $options.devtools : Vue.config.devtools;
   if (useDevTools) {
-    devtoolPlugin(vueInstance, store);
+    devtoolPlugin(store);
   }
+  store.subscribeToMutation(() => forceUpdate(vueInstance.$root));
 };
