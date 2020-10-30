@@ -10,7 +10,8 @@
     "test": "tsc && tslint --project tsconfig.json && jest --verbose --coverage && cat ./coverage/lcov.info | coveralls",
     "watch:test": "jest --watch",
     "clean:dist": "node_modules/.bin/rimraf dist/",
-    "clean:tarball": "node_modules/.bin/rimraf stateli*.tgz"
+    "clean:tarball": "node_modules/.bin/rimraf stateli*.tgz",
+    "update-version": "npm version patch -m \"updated version to %s\" && git push && git push --tags"
   },
   "author": {
     "name": "Josh Walters",
@@ -29,7 +30,7 @@
   },
   "peerDependencies": {
     "vue": "^2.0.0",
-    "stateli": "^1.0.7"
+    "stateli": "^1.0.15"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -42,7 +43,7 @@
     "coveralls": "^3.0.11",
     "jest": "^25.2.6",
     "rimraf": "^3.0.2",
-    "stateli": "^1.0.7",
+    "stateli": "^1.0.15",
     "ts-jest": "^25.3.0",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3",
