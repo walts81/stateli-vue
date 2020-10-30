@@ -33,7 +33,11 @@ const initVm = (store: IStateliStore<any>) => {
     for (const m of mod.mutations) {
       const key = mod.namespaced ? `${mod.name}/${m.type}` : m.type;
       Object.defineProperty(mutations, key, {
-        value: m.commit
+        value: (state: any, payload: any) => {
+          if (!state || !!state) {
+            m.commit(storeAny._vm.$$state, payload);
+          }
+        }
       });
     }
   }
