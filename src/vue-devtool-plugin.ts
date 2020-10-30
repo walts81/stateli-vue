@@ -19,17 +19,26 @@ const initVm = (store: IStateliStore<any>) => {
   const oldVm = storeAny._vm;
 
   const computed: any = {};
-  for (const m of store.modules) {
-    for (const g of m.getters) {
-      const key = m.namespaced ? `${m.name}/${g.type}` : g.type;
+  const mutations: any = {};
+  for (const mod of store.modules) {
+    for (const g of mod.getters) {
+      const key = mod.namespaced ? `${mod.name}/${g.type}` : g.type;
       Object.defineProperty(computed, key, {
         get: () => {
-          return g.getValue(m.state, store.getter, store.state);
+          return g.getValue(mod.state, store.getter, store.state);
         },
         enumerable: true,
       });
     }
+    for (const m of mod.mutations) {
+      const key = mod.namespaced ? `${mod.name}/${m.type}` : m.type;
+      Object.defineProperty(mutations, key, {
+        value: m.commit
+      });
+    }
   }
+  storeAny._mutations = mutations;
+
   const silent = Vue.config.silent;
   Vue.config.silent = true;
   storeAny._vm = new Vue({
