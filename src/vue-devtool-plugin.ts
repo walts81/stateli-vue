@@ -57,14 +57,12 @@ export default (store: IStateliStore<any>) => {
   });
 
   store.subscribeToMutation(s => {
-    const mutation = s.type;
     const state = s.state;
-    devtoolHook.emit('vuex:mutation', mutation, state);
+    devtoolHook.emit('vuex:mutation', s, state);
   }, { prepend: true });
 
   store.subscribeToAction(s => {
-    const action = s.type;
     const state = s.state;
-    devtoolHook.emit('vuex:action', action, state);
+    devtoolHook.emit('vuex:action', s, state);
   }, { prepend: true });
 };
