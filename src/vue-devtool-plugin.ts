@@ -12,11 +12,11 @@ const initVm = (store: IStateliStore<any>) => {
   if (!storeAny.replaceState) {
     storeAny.replaceState = x => {
       storeAny.state = x;
-      storeAny._vm.$$state = x;
+      initVm(storeAny);
     };
   }
 
-  const oldVm = storeAny._vm;
+  const oldVm: Vue = storeAny._vm;
 
   const computed: any = {};
   const mutations: any = {};
@@ -58,10 +58,22 @@ const initVm = (store: IStateliStore<any>) => {
   }
 };
 
+const forceUpdate = (store: { _vm: Vue }) => {
+  forceUpdateOnVm(store._vm.$root);
+};
+
+const forceUpdateOnVm = (vm: Vue) => {
+  vm.$forceUpdate();
+  for (const c of vm.$children) {
+    forceUpdateOnVm(c);
+  }
+};
+
 export default (store: IStateliStore<any>) => {
   if (!devtoolHook) return;
 
   initVm(store);
+  store.subscribeToMutation(() => forceUpdate(store as any));
 
   devtoolHook.emit('vuex:init', store);
 
